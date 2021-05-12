@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:bettapps/landing/landingpage_view.dart';
+import 'package:bettapps/screens/login_view.dart';
 
 class LauncherPage extends StatefulWidget {
   @override
@@ -15,10 +15,10 @@ class _LauncherPageState extends State<LauncherPage> {
   }
 
   startLaunching() async {
-    var duration = const Duration(seconds: 1);
+    var duration = const Duration(seconds: 10);
     return new Timer(duration, () {
       Navigator.of(context).pushReplacement(new MaterialPageRoute(builder: (_) {
-        return new LandingPage();
+        return new LoginPage();
       }));
     });
   }
