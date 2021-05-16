@@ -1,5 +1,7 @@
+import 'package:bettapps/utils/app_style.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:get/get.dart';
 import 'package:bettapps/screens/login_view.dart';
 
 class LauncherPage extends StatefulWidget {
@@ -15,22 +17,29 @@ class _LauncherPageState extends State<LauncherPage> {
   }
 
   startLaunching() async {
-    var duration = const Duration(seconds: 10);
-    return new Timer(duration, () {
-      Navigator.of(context).pushReplacement(new MaterialPageRoute(builder: (_) {
-        return new LoginPage();
-      }));
+    Future.delayed(const Duration(seconds: 2), () {
+      Get.to(LoginPage());
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      body: new Center(
-        child: new Image.asset(
-          "assets/ikan_logo.jpeg",
+      body: new Container(
+        color: Colors.blue,
+        child: Center(
+          child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image(
+          image: AssetImage("assets/ikan_logo.jpeg"),
           height: 100.0,
           width: 200.0,
+        ),
+            SizedBox(height: 20,),
+            Text('Version 0.0.1', style: whiteFontStyle3)
+        ],
+      ),
         ),
       ),
     );

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:bettapps/screens/login_view.dart';
+import 'package:bettapps/utils/component/background.dart';
+import 'package:get/get.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -9,23 +11,24 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      body: Container(
+    Size size = MediaQuery.of(context).size;
+    return Scaffold(
+      body: SafeArea(
+      child: Container(
         color: Colors.greenAccent,
-        padding: EdgeInsets.all(20.0),
-        child: ListView(
-          children: <Widget>[
-            Center(
+        padding: EdgeInsets.all(40.0),
+        child: Center(
               child: Column(
                 children: <Widget>[
                   _titleDescription(),
+                  SizedBox(height: size.height * 0.03),
                   _textField(),
+                  SizedBox(height: size.height * 0.05),
                   _buildButton(context),
                 ],
               ),
-            )
-          ],
         ),
+      ),
       ),
     );
   }
@@ -77,6 +80,7 @@ class _RegisterPageState extends State<RegisterPage> {
             hintStyle: TextStyle(
               color: Color(0xffccd1ff),
             ),
+            prefixIcon: Icon(Icons.mail_outline_rounded),
           ),
           style: TextStyle(color: Colors.white),
           autofocus: false,
@@ -105,6 +109,7 @@ class _RegisterPageState extends State<RegisterPage> {
             hintStyle: TextStyle(
               color: Color(0xffccd1ff),
             ),
+            prefixIcon: Icon(Icons.lock_outline_rounded),
           ),
           style: TextStyle(color: Colors.white),
           obscureText: true,
@@ -144,50 +149,46 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Widget _buildButton(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Column(
       children: <Widget>[
-        Padding(padding: EdgeInsets.only(top: 16.0)),
         InkWell(
           child: Container(
-            padding: EdgeInsets.symmetric(vertical: 8.0),
-            width: double.infinity,
+            margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+            height: 50.0,
+            width: size.width * 0.5,
+            padding: const EdgeInsets.only(top: 16.0),
             child: Text(
-              'Daftar',
-              style: TextStyle(color: Colors.white),
+              'DAFTAR',
+              style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
             decoration: BoxDecoration(
-                color: Colors.greenAccent,
-                borderRadius: BorderRadius.circular(30.0)),
+                color: Colors.blueAccent,
+                borderRadius: BorderRadius.circular(80.0)),
           ),
           onTap: () {
-            Navigator.of(context)
-                .pushReplacement(new MaterialPageRoute(builder: (_) {
-              return new LoginPage();
-            }));
+            Get.to(LoginPage());
+
           },
         ),
         Padding(
-          padding: EdgeInsets.only(top: 16.0),
+          padding: EdgeInsets.all(0),
         ),
-        Text(
-          'Sudah punya akun ',
-          style: TextStyle(
-            color: Colors.grey,
-            fontSize: 12.0,
-          ),
-        ),
-        TextButton(
+        Container(
+          alignment: Alignment.center,
+          margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+          child: GestureDetector(
+            onTap: () => Get.to(LoginPage()),
           child: Text(
-            'Login',
-            style: TextStyle(color: Colors.lightGreen),
+            "Sudah Punya Akun? Masuk",
+            style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF2661FA)
+            ),
           ),
-          onPressed: () {
-            Navigator.of(context)
-                .pushReplacement(new MaterialPageRoute(builder: (_) {
-              return new LoginPage();
-            }));
-          },
+        ),
         ),
       ],
     );
