@@ -68,16 +68,14 @@ class _BayarPageState extends State<BayarPage> {
         child: Container(
           color: Colors.transparent,
           child: Container(
-            
-            height: 550,
+            height: 510,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(50),
-                    topRight: Radius.circular(50)),
-                boxShadow: [
-                  BoxShadow(color: Colors.lightBlue, spreadRadius: 3),
-                ],
-                ),
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(50), topRight: Radius.circular(50)),
+              boxShadow: [
+                BoxShadow(color: Colors.lightBlue, spreadRadius: 3),
+              ],
+            ),
             child: Column(
               children: [
                 Center(),
