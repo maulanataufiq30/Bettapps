@@ -14,7 +14,7 @@ class _DetailPageState extends State<DetailPage> {
       appBar: AppBar(
         title: Text("Deskripsi"),
         elevation: 0.0,
-        backgroundColor: Color(0xff2CCACA),
+        backgroundColor: Colors.lightBlue,
       ),
       extendBodyBehindAppBar: false,
       body: Stack(

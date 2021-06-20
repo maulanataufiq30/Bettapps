@@ -16,7 +16,7 @@ class _DikirimPageState extends State<DikirimPage> {
       appBar: AppBar(
         title: Text("Dikirim"),
         elevation: 0.0,
-        backgroundColor: Color(0xff2CCACA),
+        backgroundColor: Colors.lightBlue,
       ),
       extendBodyBehindAppBar: false,
       body: Stack(

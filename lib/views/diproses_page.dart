@@ -16,7 +16,7 @@ class _DiprosesPageState extends State<DiprosesPage> {
       appBar: AppBar(
         title: Text("Proses"),
         elevation: 0.0,
-        backgroundColor: Color(0xff2CCACA),
+       backgroundColor: Colors.lightBlue,
       ),
       extendBodyBehindAppBar: false,
       body: Stack(

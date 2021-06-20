@@ -15,7 +15,7 @@ class _DiterimaPageState extends State<DiterimaPage> {
       appBar: AppBar(
         title: Text("Diterima"),
         elevation: 0.0,
-        backgroundColor: Color(0xff2CCACA),
+        backgroundColor: Colors.lightBlue,
       ),
       extendBodyBehindAppBar: false,
       body: Stack(
