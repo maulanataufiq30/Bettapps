@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "639757645801",
+    "project_id": "bettapps-9ff64",
+    "storage_bucket": "bettapps-9ff64.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:639757645801:android:d21a5d1eee89993ed47d78",
+        "android_client_info": {
+          "package_name": "com.tnembull.bettapps"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "639757645801-0vbk8sogv5eqgj8qvptsufattcrq7rbj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUgn-6zZ3XvJjtGnNEI9PTl12Fh9mlkbA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "639757645801-0vbk8sogv5eqgj8qvptsufattcrq7rbj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
