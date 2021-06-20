@@ -23,11 +23,7 @@ class _DiterimaPageState extends State<DiterimaPage> {
           Container(
             width: MediaQuery.of(context).size.width * 1,
             height: MediaQuery.of(context).size.height * 1,
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: <Color>[Color(0xff2CCACA), Color(0xffFF1192)])),
+            
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -55,12 +51,12 @@ class _DiterimaPageState extends State<DiterimaPage> {
               children: <Widget>[
                 Text(
                   "Ikan Cupang",
-                  style: TextStyle(color: Colors.white, fontSize: 16),
+                  style: TextStyle(color: Colors.blue, fontSize: 16),
                 ),
                 Text(
-                  "Half Moon",
+                  "Giant",
                   style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.blue,
                       fontSize: 20,
                       fontWeight: FontWeight.bold),
                 ),
@@ -114,8 +110,8 @@ class _DiterimaPageState extends State<DiterimaPage> {
                           color: Colors.blueAccent,
                           borderRadius: BorderRadius.circular(50),
                         ),
-                        height: 33,
-                        width: 153,
+                        height: 50,
+                        width: 200,
                         child: Center(
                           child: Text(
                             "Confirm Received",

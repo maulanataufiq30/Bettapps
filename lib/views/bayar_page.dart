@@ -68,7 +68,8 @@ class _BayarPageState extends State<BayarPage> {
         child: Container(
           color: Colors.transparent,
           child: Container(
-            height: 480,
+            
+            height: 550,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(50),
@@ -76,10 +77,7 @@ class _BayarPageState extends State<BayarPage> {
                 boxShadow: [
                   BoxShadow(color: Colors.lightBlue, spreadRadius: 3),
                 ],
-                gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: <Color>[Color(0xff2CCACA), Color(0xffFF1192)])),
+                ),
             child: Column(
               children: [
                 Center(),
@@ -128,9 +126,9 @@ class _BayarPageState extends State<BayarPage> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(
-                        top: 15, left: 20, right: 10, bottom: 13),
+                        top: 20, left: 20, right: 10, bottom: 15),
                     child: Text(
-                      "082189839012",
+                      "+62 896-2663-2167",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 25,

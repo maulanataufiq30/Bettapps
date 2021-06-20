@@ -38,128 +38,69 @@ class _ProfilPageState extends State<ProfilPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blue,
-        title: Text("Profile"),
-        actions: <Widget>[
-          IconButton(
-              icon: Icon(
-                Icons.add,
-                size: 35,
-              ),
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return AddItemPage();
-                }));
-              }),
-          IconButton(
-              icon: Icon(
-                Icons.settings,
-                size: 35,
-              ),
-              onPressed: () {
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) {
-                  return ComingSoonPage();
-                }));
-              }),
-        ],
-      ),
-      body: Container(
+      body: SafeArea(
         child: Center(
           child: Column(
             children: [
               Container(
-                margin: EdgeInsets.only(top: 30, bottom: 40, left: 20),
-                child: Row(children: <Widget>[
+                child: Column(children: <Widget>[
+                  Padding(padding: EdgeInsets.symmetric(horizontal: 40)),
                   ClipRRect(
                     borderRadius: BorderRadius.circular(50.0),
                     child: Container(
                       //margin: EdgeInsets.only(top: 60, bottom: 30),
-                      width: 100,
-                      height: 100,
+                      width: 150,
+                      height: 150,
                       child: Icon(
                         Icons.account_circle,
-                        size: 60,
+                        size: 150,
                       ),
-                    ),
-                  ),
-                  Container(
-                    child: Column(
-                      children: <Widget>[
-                        Container(
-                          padding: EdgeInsets.all(5),
-                          margin: EdgeInsets.only(bottom: 10, top: 2),
-                          width: MediaQuery.of(context).size.width * 0.5,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(40),
-                            color: Color(0xff2CCACA),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "Admin",
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(10),
-                          margin: EdgeInsets.only(bottom: 10),
-                          width: MediaQuery.of(context).size.width * 0.5,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Color(0xffFF1192)),
-                          child: Center(
-                            child: Text(
-                              "Bettapps",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                          ),
-                        ),
-                      ],
                     ),
                   ),
                 ]),
               ),
-              GestureDetector(
-                child: Card(
-                  margin: EdgeInsets.only(bottom: 20),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25),
-                      side: BorderSide(width: 3, color: Colors.blue)),
-                  elevation: 7,
-                  child: Container(
-                    padding: EdgeInsets.only(
-                        left: 15, right: 15, top: 10, bottom: 10),
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    child: Row(
-                      children: <Widget>[
-                        Center(
-                          child: Container(
-                            child: Text("Buka Toko Penjualan"),
-                          ),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 40),
+                width: MediaQuery.of(context).size.width * 1,
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      padding: EdgeInsets.all(10),
+                      margin: EdgeInsets.only(bottom: 10),
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(40),
+                        color: Color(0xFF2689FA),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Admin",
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white),
                         ),
-                        IconButton(
-                          padding: EdgeInsets.only(left: 50),
-                          icon: Icon(
-                            Icons.arrow_forward,
-                          ),
-                        )
-                      ],
+                      ),
                     ),
-                  ),
+                    Container(
+                      padding: EdgeInsets.all(10),
+                      margin: EdgeInsets.only(bottom: 10),
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Color(0xffFF1192)),
+                      child: Center(
+                        child: Text(
+                          "Bettapps",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return ComingSoonPage();
-                  }));
-                },
               ),
               // Container(
               //   height: MediaQuery.of(context).size.height * 0.09,
@@ -287,6 +228,41 @@ class _ProfilPageState extends State<ProfilPage> {
                 ),
               ),
               SizedBox(height: 10),
+              GestureDetector(
+                child: Card(
+                  margin: EdgeInsets.only(bottom: 20),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25),
+                      side: BorderSide(width: 3, color: Colors.blue)),
+                  elevation: 7,
+                  child: Container(
+                    padding: EdgeInsets.only(
+                        left: 15, right: 15, top: 10, bottom: 10),
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    child: Row(
+                      children: <Widget>[
+                        Center(
+                          child: Container(
+                            child: Text("Tambah Produk"),
+                          ),
+                        ),
+                        IconButton(
+                          padding: EdgeInsets.only(left: 5),
+                          icon: Icon(
+                            Icons.add,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return AddItemPage();
+                }));
+                },
+              ),
+              SizedBox(height: 20),
               CustomButton(
                   onPress: () {
                     FirebaseFirestore _firestore = FirebaseFirestore.instance;

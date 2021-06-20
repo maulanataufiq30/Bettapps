@@ -24,11 +24,7 @@ class _DiprosesPageState extends State<DiprosesPage> {
           Container(
             width: MediaQuery.of(context).size.width * 1,
             height: MediaQuery.of(context).size.height * 1,
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: <Color>[Color(0xff2CCACA), Color(0xffFF1192)])),
+            
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -56,12 +52,12 @@ class _DiprosesPageState extends State<DiprosesPage> {
               children: <Widget>[
                 Text(
                   "Ikan Cupang",
-                  style: TextStyle(color: Colors.white, fontSize: 16),
+                  style: TextStyle(color: Colors.blue, fontSize: 16),
                 ),
                 Text(
-                  "HalfMoon",
+                  "Giant",
                   style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.blue,
                       fontSize: 20,
                       fontWeight: FontWeight.bold),
                 ),
