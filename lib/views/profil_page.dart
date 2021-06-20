@@ -39,7 +39,7 @@ class _ProfilPageState extends State<ProfilPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xff2CCACA),
+        backgroundColor: Colors.blue,
         title: Text("Profile"),
         actions: <Widget>[
           IconButton(
@@ -63,7 +63,6 @@ class _ProfilPageState extends State<ProfilPage> {
                   return ComingSoonPage();
                 }));
               }),
-          
         ],
       ),
       body: Container(
@@ -79,10 +78,10 @@ class _ProfilPageState extends State<ProfilPage> {
                       //margin: EdgeInsets.only(top: 60, bottom: 30),
                       width: 100,
                       height: 100,
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage("assets/magnus.jpg"),
-                              fit: BoxFit.cover)),
+                      child: Icon(
+                        Icons.account_circle,
+                        size: 60,
+                      ),
                     ),
                   ),
                   Container(
@@ -98,7 +97,7 @@ class _ProfilPageState extends State<ProfilPage> {
                           ),
                           child: Center(
                             child: Text(
-                              "Magnus Carlsen",
+                              "Admin",
                               style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
@@ -115,7 +114,7 @@ class _ProfilPageState extends State<ProfilPage> {
                               color: Color(0xffFF1192)),
                           child: Center(
                             child: Text(
-                              " AIRO Corps. ",
+                              "Bettapps",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 16,
@@ -133,7 +132,7 @@ class _ProfilPageState extends State<ProfilPage> {
                   margin: EdgeInsets.only(bottom: 20),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(25),
-                      side: BorderSide(width: 3, color: Color(0xff2CCACA))),
+                      side: BorderSide(width: 3, color: Colors.blue)),
                   elevation: 7,
                   child: Container(
                     padding: EdgeInsets.only(
@@ -168,7 +167,7 @@ class _ProfilPageState extends State<ProfilPage> {
               Card(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
-                    side: BorderSide(width: 3, color: Color(0xff2CCACA))),
+                    side: BorderSide(width: 3, color: Colors.blue)),
                 elevation: 7,
                 child: Container(
                   padding:

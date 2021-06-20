@@ -55,11 +55,11 @@ class _DikirimPageState extends State<DikirimPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  "Prosesor",
+                  "Ikan Cupang",
                   style: TextStyle(color: Colors.white, fontSize: 16),
                 ),
                 Text(
-                  "CORE i7-10700K",
+                  "Half Moon",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 20,
@@ -71,7 +71,7 @@ class _DikirimPageState extends State<DikirimPage> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
                         Image(
-                          image: AssetImage("assets/corei7.png"),
+                          image: AssetImage("assets/ikan_logo.jpeg"),
                           // height: MediaQuery.of(context).size.height * 0.4,
                           width: MediaQuery.of(context).size.width * 0.4,
                         )
@@ -101,7 +101,7 @@ class _DikirimPageState extends State<DikirimPage> {
                     Container(
                       margin: EdgeInsets.only(top: 10),
                       child: Text(
-                        "Price : 9.200.00",
+                        "Price : 1.200.00",
                         style: TextStyle(
                           fontSize: 15,
                           fontFamily: "Poppins",

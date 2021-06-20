@@ -28,7 +28,7 @@ class _BayarPageState extends State<BayarPage> {
                 "BNI",
                 style: TextStyle(
                   decoration: TextDecoration.underline,
-                  fontSize: 35,
+                  fontSize: 30,
                   fontWeight: FontWeight.bold,
                   color: Colors.lightBlue,
                 ),
@@ -40,18 +40,21 @@ class _BayarPageState extends State<BayarPage> {
                 "0786178",
                 style: TextStyle(
                   decoration: TextDecoration.underline,
-                  fontSize: 35,
+                  fontSize: 30,
                   fontWeight: FontWeight.bold,
                   color: Colors.lightBlue,
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20),
+              padding: const EdgeInsets.only(
+                left: 20,
+                right: 20,
+              ),
               child: Text(
-                "Yuan Ferdinand",
+                "Maulana Taufiq",
                 style: TextStyle(
-                  fontSize: 35,
+                  fontSize: 30,
                   fontWeight: FontWeight.bold,
                   color: Colors.lightBlue,
                 ),
@@ -65,7 +68,7 @@ class _BayarPageState extends State<BayarPage> {
         child: Container(
           color: Colors.transparent,
           child: Container(
-            height: 550,
+            height: 480,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(50),
@@ -96,10 +99,10 @@ class _BayarPageState extends State<BayarPage> {
                   padding: const EdgeInsets.only(
                       top: 40, left: 20, right: 20, bottom: 40),
                   child: Text(
-                    "9.200.000",
+                    "1.200.000",
                     style: TextStyle(
                       decoration: TextDecoration.underline,
-                      fontSize: 40,
+                      fontSize: 30,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
