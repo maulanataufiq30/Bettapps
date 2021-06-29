@@ -1,16 +1,23 @@
 import 'package:bettapps/widgets/custom_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:bettapps/helper/shared_preference_helper.dart';
 import 'package:bettapps/model/database.dart';
 import 'package:bettapps/views/bottom_navigation.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+String name;
+String email;
+String imageUrl;
 
 class Auth {
   FirebaseAuth auth = FirebaseAuth.instance;
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  GoogleSignIn _googlSignIn = new GoogleSignIn();
 
   getCurrentUser() async {
     return auth.currentUser;
@@ -150,11 +157,81 @@ class Auth {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     auth.signOut();
     preferences.clear();
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Sign Out'),
+      ),
+    );
     Future.delayed(const Duration(milliseconds: 500), () {
       RestartWidget.restartApp(context);
     });
     //return new LoginPage();
   }
+
+  Future googlesignIn(BuildContext context) async {
+    await Firebase.initializeApp();
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Sign in'),
+      ),
+    );
+    final GoogleSignInAccount googleUser = await _googlSignIn.signIn();
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser.authentication;
+
+    final AuthCredential credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+
+    final UserCredential authResult =
+    await auth.signInWithCredential(credential);
+    final User user = authResult.user;
+
+    if (user != null) {
+      // Checking if email and name is null
+      assert(user.email != null);
+      assert(user.displayName != null);
+      assert(user.photoURL != null);
+
+      name = user.displayName;
+      email = user.email;
+      imageUrl = user.photoURL;
+
+      // Only taking the first part of the name, i.e., First Name
+      if (name.contains(" ")) {
+        name = name.substring(0, name.indexOf(" "));
+      }
+
+      assert(!user.isAnonymous);
+      assert(await user.getIdToken() != null);
+
+      final User currentUser = auth.currentUser;
+      assert(user.uid == currentUser.uid);
+
+      print('signInWithGoogle succeeded: $user');
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => BottomNavigation()));
+
+      return '$user';
+  }
+}
+  Future signOutGoogle(context) async {
+    await _googlSignIn.signOut();
+    auth.signOut();
+    print("User Signed Out");
+    Future.delayed(const Duration(milliseconds: 500), () {
+      RestartWidget.restartApp(context);
+    });
+  }
+}
+
+
+
+class ProviderDetails {
+  ProviderDetails(this.providerDetails);
+  final String providerDetails;
 }
 
 class RestartWidget extends StatefulWidget {

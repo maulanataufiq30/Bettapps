@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "639757645801-dcbrlk1cvc250mcfold90bb9eb07giul.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tnembull.bettapps",
+            "certificate_hash": "3b281d787f6edf2ac4e233470b077c4fcae28382"
+          }
+        },
+        {
           "client_id": "639757645801-0vbk8sogv5eqgj8qvptsufattcrq7rbj.apps.googleusercontent.com",
           "client_type": 3
         }

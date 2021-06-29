@@ -2,7 +2,9 @@ import 'package:bettapps/utils/app_style.dart';
 import 'package:bettapps/utils/component/background.dart';
 import 'package:bettapps/views/register_page.dart';
 import 'package:bettapps/model/auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:bettapps/widgets/custom_dialog.dart';
 
@@ -164,6 +166,42 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ],
                   ),
+                  SizedBox(height: 10.0),
+                  Container(
+                      width: 250.0,
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            shape: MaterialStateProperty.all<
+                                    RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius:
+                                        new BorderRadius.circular(30.0))),
+                            backgroundColor:
+                                MaterialStateProperty.all(Color(0xffffffff)),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Icon(
+                                FontAwesomeIcons.google,
+                                color: Color(0xffCE107C),
+                              ),
+                              SizedBox(width: 10.0),
+                              Text(
+                                'Sign in with Google',
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 18.0),
+                              ),
+                            ],
+                          ),
+                          onPressed: () => Auth()
+                              .googlesignIn(context)
+                              .then((user) => print(user))
+                              .catchError((e) => print(e)),
+                        ),
+                      )),
                 ],
               ),
             )),

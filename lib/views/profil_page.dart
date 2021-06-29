@@ -11,16 +11,21 @@ import 'package:bettapps/views/diproses_page.dart';
 import 'package:bettapps/views/diterima_page.dart';
 import 'package:bettapps/views/login_page.dart';
 import 'package:bettapps/views/toko_page.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../widgets/custom_button.dart';
 
+// ignore: must_be_immutable
 class ProfilPage extends StatefulWidget {
+
   @override
   _ProfilPageState createState() => _ProfilPageState();
 }
 
 class _ProfilPageState extends State<ProfilPage> {
   String myOriginName, myUserName, myEmail, myId;
+
+  GoogleSignIn _googlSignIn = new GoogleSignIn();
 
   getMyInfoFromSharedPreferences() async {
     myUserName = await SharedPreferenceHelper().getUserName();
@@ -43,21 +48,29 @@ class _ProfilPageState extends State<ProfilPage> {
           child: Column(
             children: [
               Container(
-                child: Column(children: <Widget>[
-                  Padding(padding: EdgeInsets.symmetric(horizontal: 40)),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(50.0),
-                    child: Container(
-                      //margin: EdgeInsets.only(top: 60, bottom: 30),
-                      width: 150,
-                      height: 150,
-                      child: Icon(
-                        Icons.account_circle,
-                        size: 150,
+                child: Column(
+                  children: <Widget>[
+                    Padding(padding: EdgeInsets.symmetric(horizontal: 40)),
+                    if (imageUrl == null)
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(50.0),
+                        child: Container(
+                          //margin: EdgeInsets.only(top: 60, bottom: 30),
+                          width: 150,
+                          height: 150,
+                          child: Icon(
+                            Icons.account_circle,
+                            size: 150,
+                          ),
+                        ),
+                      )
+                    else if (imageUrl != null)
+                      CircleAvatar(
+                        backgroundImage: NetworkImage(imageUrl),
+                        radius: 50.0,
                       ),
-                    ),
-                  ),
-                ]),
+                  ],
+                ),
               ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 40),
@@ -251,6 +264,7 @@ class _ProfilPageState extends State<ProfilPage> {
                           icon: Icon(
                             Icons.add,
                           ),
+                          onPressed: () {},
                         )
                       ],
                     ),
@@ -258,13 +272,20 @@ class _ProfilPageState extends State<ProfilPage> {
                 ),
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return AddItemPage();
-                }));
+                    return AddItemPage();
+                  }));
                 },
               ),
               SizedBox(height: 20),
               CustomButton(
                   onPress: () {
+                    if (Auth().googlesignIn(context) != null){
+                      Auth().signOutGoogle(context);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Sign Out'),
+                        ),
+                      );}
                     FirebaseFirestore _firestore = FirebaseFirestore.instance;
                     CollectionReference _users = _firestore.collection('users');
                     _users
@@ -274,7 +295,8 @@ class _ProfilPageState extends State<ProfilPage> {
                         })
                         .then((value) => print("User logout"))
                         .catchError((error) => print("Gagal logout"));
-                    Auth().toSignOut(context);
+                    if (Auth().googlesignIn(context) == null){
+                    Auth().toSignOut(context);}
                   },
                   text: 'Keluar',
                   color: Colors.blue)

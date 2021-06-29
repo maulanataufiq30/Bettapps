@@ -39,6 +39,7 @@ dependencies:
   supercharged:
   get:
   lottie:
+  font_awesome_flutter:
   progress_dialog:
   google_sign_in:
 
