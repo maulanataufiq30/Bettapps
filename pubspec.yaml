@@ -42,6 +42,7 @@ dependencies:
   font_awesome_flutter:
   progress_dialog:
   google_sign_in:
+  provider:
 
 dev_dependencies:
   flutter_test:

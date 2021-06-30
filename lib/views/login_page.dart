@@ -168,7 +168,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   SizedBox(height: 10.0),
                   Container(
-                      width: 250.0,
+                      margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
                       child: Align(
                         alignment: Alignment.center,
                         child: ElevatedButton(
@@ -182,7 +182,7 @@ class _LoginPageState extends State<LoginPage> {
                                 MaterialStateProperty.all(Color(0xffffffff)),
                           ),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
                               Icon(
                                 FontAwesomeIcons.google,

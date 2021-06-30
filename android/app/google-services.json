@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "639757645801-pcs1apm8ct5r3knlupcltejfl9aiul75.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tnembull.bettapps",
+            "certificate_hash": "60076b356b740471f79d4a1542b8c589e3507f8a"
+          }
+        },
+        {
           "client_id": "639757645801-0vbk8sogv5eqgj8qvptsufattcrq7rbj.apps.googleusercontent.com",
           "client_type": 3
         }
