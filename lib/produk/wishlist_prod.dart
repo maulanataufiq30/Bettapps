@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:bettapps/views/Detail_Page.dart';
 
@@ -58,8 +59,8 @@ class Single_prod extends StatelessWidget {
           tag: prod_picture,
           child: Material(
             child: InkWell(
-              onTap: () => Navigator.of(context).push(new MaterialPageRoute(
-                  builder: (context) => new DetailPage())),
+              onTap: () => Navigator.of(context).push(
+                  new MaterialPageRoute(builder: (context) => DetailPage())),
               child: Stack(
                 children: <Widget>[
                   Image.asset(

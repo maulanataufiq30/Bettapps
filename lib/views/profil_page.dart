@@ -17,7 +17,6 @@ import '../widgets/custom_button.dart';
 
 // ignore: must_be_immutable
 class ProfilPage extends StatefulWidget {
-
   @override
   _ProfilPageState createState() => _ProfilPageState();
 }
@@ -65,10 +64,11 @@ class _ProfilPageState extends State<ProfilPage> {
                         ),
                       )
                     else if (imageUrl != null)
-                      CircleAvatar(
-                        backgroundImage: NetworkImage(imageUrl),
-                        radius: 50.0,
-                      ),
+                      Padding(padding: EdgeInsets.only(top: 5)),
+                    CircleAvatar(
+                      backgroundImage: NetworkImage(imageUrl),
+                      radius: 50.0,
+                    ),
                   ],
                 ),
               ),
@@ -77,24 +77,44 @@ class _ProfilPageState extends State<ProfilPage> {
                 width: MediaQuery.of(context).size.width * 1,
                 child: Row(
                   children: <Widget>[
-                    Container(
-                      padding: EdgeInsets.all(10),
-                      margin: EdgeInsets.only(bottom: 10),
-                      width: MediaQuery.of(context).size.width * 0.4,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(40),
-                        color: Color(0xFF2689FA),
-                      ),
-                      child: Center(
-                        child: Text(
-                          "Admin",
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white),
+                    if (name == null)
+                      Container(
+                        padding: EdgeInsets.all(10),
+                        margin: EdgeInsets.only(bottom: 10),
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(40),
+                          color: Color(0xFF2689FA),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Admin",
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white),
+                          ),
                         ),
                       ),
-                    ),
+                    if (name != null)
+                      Container(
+                        padding: EdgeInsets.all(10),
+                        margin: EdgeInsets.only(bottom: 10),
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(40),
+                          color: Color(0xFF2689FA),
+                        ),
+                        child: Center(
+                          child: Text(
+                            name,
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white),
+                          ),
+                        ),
+                      ),
                     Container(
                       padding: EdgeInsets.all(10),
                       margin: EdgeInsets.only(bottom: 10),
@@ -279,13 +299,6 @@ class _ProfilPageState extends State<ProfilPage> {
               SizedBox(height: 20),
               CustomButton(
                   onPress: () {
-                    if (Auth().googlesignIn(context) != null){
-                      Auth().signOutGoogle(context);
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Sign Out'),
-                        ),
-                      );}
                     FirebaseFirestore _firestore = FirebaseFirestore.instance;
                     CollectionReference _users = _firestore.collection('users');
                     _users
@@ -295,8 +308,17 @@ class _ProfilPageState extends State<ProfilPage> {
                         })
                         .then((value) => print("User logout"))
                         .catchError((error) => print("Gagal logout"));
-                    if (Auth().googlesignIn(context) == null){
-                    Auth().toSignOut(context);}
+                    if (Auth().googlesignIn(context) != null) {
+                      Auth().signoutGoogle(context);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Sign Out'),
+                        ),
+                      );
+                    }
+                    if (Auth().googlesignIn(context) == null) {
+                      Auth().toSignOut(context);
+                    }
                   },
                   text: 'Keluar',
                   color: Colors.blue)

@@ -148,7 +148,7 @@ class Auth {
                 onPress: () {
                   Navigator.pop(context);
                 },
-                description: 'Username atau password ssalah!'));
+                description: 'Username atau password salah!'));
       }
     }
   }
@@ -176,9 +176,8 @@ class Auth {
         content: Text('Sign in'),
       ),
     );
-    final GoogleSignInAccount googleUser = await _googlSignIn.signIn();
-    final GoogleSignInAuthentication googleAuth =
-        await googleUser.authentication;
+    GoogleSignInAccount googleUser = await _googlSignIn.signIn();
+    GoogleSignInAuthentication googleAuth = await googleUser.authentication;
 
     final AuthCredential credential = GoogleAuthProvider.credential(
       accessToken: googleAuth.accessToken,
@@ -186,7 +185,7 @@ class Auth {
     );
 
     final UserCredential authResult =
-    await auth.signInWithCredential(credential);
+        await auth.signInWithCredential(credential);
     final User user = authResult.user;
 
     if (user != null) {
@@ -215,9 +214,10 @@ class Auth {
           context, MaterialPageRoute(builder: (context) => BottomNavigation()));
 
       return '$user';
+    }
   }
-}
-  Future signOutGoogle(context) async {
+
+  Future signoutGoogle(context) async {
     await _googlSignIn.signOut();
     auth.signOut();
     print("User Signed Out");
@@ -226,8 +226,6 @@ class Auth {
     });
   }
 }
-
-
 
 class ProviderDetails {
   ProviderDetails(this.providerDetails);

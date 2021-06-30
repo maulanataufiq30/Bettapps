@@ -1,3 +1,4 @@
+import 'package:bettapps/views/detail_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -21,25 +22,33 @@ class ItemCard extends StatefulWidget {
 class _ItemCardState extends State<ItemCard> {
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-      child: Container(
-        padding: EdgeInsets.all(20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            ClipRRect(
-                borderRadius: BorderRadius.circular(50),
-                child: Image(
-                    fit: BoxFit.fill, image: NetworkImage(widget.gambar))),
-            Text(
-              widget.nama,
-              style: TextStyle(fontSize: 12),
-            )
-          ],
-        ),
-      ),
-    );
+    return InkWell(
+        child: GestureDetector(
+            onTap: () {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => DetailPage()));
+            },
+            child: Card(
+              elevation: 5,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5)),
+              child: Container(
+                padding: EdgeInsets.all(20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ClipRRect(
+                        borderRadius: BorderRadius.circular(50),
+                        child: Image(
+                            fit: BoxFit.fill,
+                            image: NetworkImage(widget.gambar))),
+                    Text(
+                      widget.nama,
+                      style: TextStyle(fontSize: 12),
+                    )
+                  ],
+                ),
+              ),
+            )));
   }
 }

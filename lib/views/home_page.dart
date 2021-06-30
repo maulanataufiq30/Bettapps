@@ -18,7 +18,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-   String myOriginName, myUserName, myEmail, myId;
+  String myOriginName, myUserName, myEmail, myId;
 
   getMyInfoFromSharedPreferences() async {
     myUserName = await SharedPreferenceHelper().getUserName();
@@ -32,6 +32,7 @@ class _HomePageState extends State<HomePage> {
     getMyInfoFromSharedPreferences();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,16 +62,28 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text('Halo', style: whiteFontBoldStyle2),
-                        Container(
-                          width: 200,
-                          child: Text(
-                            'User',
-                            maxLines: 1,
-                            style: blackFontBoldStyle0.copyWith(
-                              color: Colors.white,
+                        if (name == null)
+                          Container(
+                            width: 200,
+                            child: Text(
+                              'User',
+                              maxLines: 1,
+                              style: blackFontBoldStyle0.copyWith(
+                                color: Colors.white,
+                              ),
                             ),
                           ),
-                        ),
+                        if (name != null)
+                          Container(
+                            width: 200,
+                            child: Text(
+                              name,
+                              maxLines: 1,
+                              style: blackFontBoldStyle0.copyWith(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
                         SizedBox(height: 20),
                         Text('"Selamat datang di Bettapps"',
                             style: greyFontStyleSmall.copyWith(
@@ -93,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.blue)),
                     InkWell(
                       child:
-                      Text('Lainnya', style: TextStyle(color: Colors.blue)),
+                          Text('Lainnya', style: TextStyle(color: Colors.blue)),
                       onTap: () {
                         // showDialog(
                         //     context: context,
@@ -155,10 +168,9 @@ class _HomePageState extends State<HomePage> {
                             fontSize: 18,
                             color: Colors.blue)),
                     InkWell(
-                        child:
-                        Text('Lainnya', style: TextStyle(color: Colors.blue)),
-                        onTap: () {
-                        })
+                        child: Text('Lainnya',
+                            style: TextStyle(color: Colors.blue)),
+                        onTap: () {})
                   ],
                 ),
               ),
@@ -176,7 +188,7 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.blue)),
                     InkWell(
                       child:
-                      Text('Lainnya', style: TextStyle(color: Colors.blue)),
+                          Text('Lainnya', style: TextStyle(color: Colors.blue)),
                       onTap: () {
                         // Get.toNamed(AppRoutes.PANEN);
                       },
