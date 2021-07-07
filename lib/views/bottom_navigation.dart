@@ -36,6 +36,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
         child: _listPage[_selectedNavbar],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -59,7 +60,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
           ),
         ],
         currentIndex: _selectedNavbar,
-        selectedItemColor: Color(0xff2CCACA),
+        selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.grey,
         showUnselectedLabels: true,
         onTap: _changeSelectedNavBar,

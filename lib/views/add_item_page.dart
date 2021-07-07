@@ -283,8 +283,9 @@ class _AddItemPageState extends State<AddItemPage> {
                                     return BottomNavigation();
                                   }));
                                   if (imageDir != null) {
-                                    imagePath = await DatabaseMethods.getGambar(
-                                        imageDir);
+                                  imagePath =
+                                        await DatabaseMethods.uploadGambar(
+                                            imageDir);
                                   }
                                   Map<String, dynamic> infoBarang = {
                                     "nama": nama,

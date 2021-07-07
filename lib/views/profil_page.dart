@@ -1,4 +1,6 @@
-import 'package:bettapps/views/coming_soon_page.dart';
+import 'dart:io';
+
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:bettapps/helper/shared_preference_helper.dart';
@@ -9,9 +11,10 @@ import 'package:bettapps/views/bayar_page.dart';
 import 'package:bettapps/views/dikirim_page.dart';
 import 'package:bettapps/views/diproses_page.dart';
 import 'package:bettapps/views/diterima_page.dart';
-import 'package:bettapps/views/login_page.dart';
 import 'package:bettapps/views/toko_page.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:bettapps/model/database.dart';
+import 'package:bettapps/views/coming_soon_page.dart';
 
 import '../widgets/custom_button.dart';
 
@@ -22,22 +25,39 @@ class ProfilPage extends StatefulWidget {
 }
 
 class _ProfilPageState extends State<ProfilPage> {
-  String myOriginName, myUserName, myEmail, myId;
+  var imageDir;
+  String myPict = "DEFAULT", def = "DEFAULT";
+  String myUserName, myEmail = "DEFAULT", myCredentialId = "DEFAULT";
+  String myId;
 
-  GoogleSignIn _googlSignIn = new GoogleSignIn();
-
-  getMyInfoFromSharedPreferences() async {
-    myUserName = await SharedPreferenceHelper().getUserName();
-    myEmail = await SharedPreferenceHelper().getUserEmail();
-    myId = await SharedPreferenceHelper().getUserId();
-    setState(() {});
-  }
-
-  @override
+@override
   void initState() {
     getMyInfoFromSharedPreferences();
     super.initState();
   }
+  getMyInfoFromSharedPreferences() async {
+    myUserName = await SharedPreferenceHelper().getUserName();
+    myEmail = await SharedPreferenceHelper().getUserEmail();
+    myCredentialId = await SharedPreferenceHelper().getUserCredentialId();
+    myPict = await SharedPreferenceHelper().getImageUrl();
+    setState(() {});
+  }
+
+  Future<File> getImage() async {
+    var imageFile;
+    final picker = ImagePicker();
+    PickedFile pickedFile = await picker.getImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        imageFile = File(pickedFile.path);
+      });
+      return imageDir = imageFile;
+    } else {
+      return imageDir = imageFile;
+    }
+  }
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -50,25 +70,68 @@ class _ProfilPageState extends State<ProfilPage> {
                 child: Column(
                   children: <Widget>[
                     Padding(padding: EdgeInsets.symmetric(horizontal: 40)),
-                    if (imageUrl == null)
-                      ClipRRect(
+                    ClipRRect(
                         borderRadius: BorderRadius.circular(50.0),
-                        child: Container(
-                          //margin: EdgeInsets.only(top: 60, bottom: 30),
-                          width: 150,
-                          height: 150,
-                          child: Icon(
-                            Icons.account_circle,
-                            size: 150,
-                          ),
-                        ),
-                      )
-                    else if (imageUrl != null)
-                      Padding(padding: EdgeInsets.only(top: 5)),
-                    CircleAvatar(
-                      backgroundImage: NetworkImage(imageUrl),
-                      radius: 50.0,
-                    ),
+                        child: (def != myPict)
+                            ? GestureDetector(
+                                onTap: () async {
+                                  File file = await getImage();
+                                  (file != null)
+                                      ? myPict =
+                                          await DatabaseMethods.uploadGambar(
+                                              file)
+                                      : myPict = def;
+                                  FirebaseFirestore _firestore =
+                                      FirebaseFirestore.instance;
+                                  CollectionReference _users =
+                                      _firestore.collection('users');
+                                  _users.doc(myCredentialId).update({
+                                    'imageUrl': myPict,
+                                  });
+                                  SharedPreferenceHelper().saveImageUrl(myPict);
+                                  getMyInfoFromSharedPreferences();
+                                  setState(() {});
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.only(top: 60, bottom: 30),
+                                  width: 100,
+                                  height: 100,
+                                  decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          image: NetworkImage(myPict),
+                                          fit: BoxFit.cover)),
+                                ),
+                              )
+                            : GestureDetector(
+                                onTap: () async {
+                                  File file = await getImage();
+                                  (file != null)
+                                      ? myPict =
+                                          await DatabaseMethods.uploadGambar(
+                                              file)
+                                      : myPict = def;
+                                  FirebaseFirestore _firestore =
+                                      FirebaseFirestore.instance;
+                                  CollectionReference _users =
+                                      _firestore.collection('users');
+                                  _users.doc(myCredentialId).update({
+                                    'imageUrl': myPict,
+                                  });
+                                  SharedPreferenceHelper().saveImageUrl(myPict);
+                                  getMyInfoFromSharedPreferences();
+                                  setState(() {});
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.only(top: 60, bottom: 30),
+                                  width: 100,
+                                  height: 100,
+                                  decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          image:
+                                              AssetImage("assets/add_pp.png"),
+                                          fit: BoxFit.cover)),
+                                ),
+                              )),
                   ],
                 ),
               ),
@@ -77,44 +140,24 @@ class _ProfilPageState extends State<ProfilPage> {
                 width: MediaQuery.of(context).size.width * 1,
                 child: Row(
                   children: <Widget>[
-                    if (name == null)
-                      Container(
-                        padding: EdgeInsets.all(10),
-                        margin: EdgeInsets.only(bottom: 10),
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(40),
-                          color: Color(0xFF2689FA),
-                        ),
-                        child: Center(
-                          child: Text(
-                            "Admin",
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white),
-                          ),
+                    Container(
+                      padding: EdgeInsets.all(10),
+                      margin: EdgeInsets.only(bottom: 10),
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(40),
+                        color: Color(0xFF2689FA),
+                      ),
+                      child: Center(
+                        child: Text(
+                          myUserName ?? "User",
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white),
                         ),
                       ),
-                    if (name != null)
-                      Container(
-                        padding: EdgeInsets.all(10),
-                        margin: EdgeInsets.only(bottom: 10),
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(40),
-                          color: Color(0xFF2689FA),
-                        ),
-                        child: Center(
-                          child: Text(
-                            name,
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white),
-                          ),
-                        ),
-                      ),
+                    ),
                     Container(
                       padding: EdgeInsets.all(10),
                       margin: EdgeInsets.only(bottom: 10),
@@ -308,17 +351,12 @@ class _ProfilPageState extends State<ProfilPage> {
                         })
                         .then((value) => print("User logout"))
                         .catchError((error) => print("Gagal logout"));
-                    if (Auth().googlesignIn(context) != null) {
-                      Auth().signoutGoogle(context);
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Sign Out'),
-                        ),
-                      );
-                    }
-                    if (Auth().googlesignIn(context) == null) {
-                      Auth().toSignOut(context);
-                    }
+                    Auth().toSignOut(context);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Sign Out'),
+                      ),
+                    );
                   },
                   text: 'Keluar',
                   color: Colors.blue)

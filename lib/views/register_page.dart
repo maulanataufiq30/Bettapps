@@ -65,7 +65,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         hintText: 'Masukkan Nama Lengkap',
                         errorText:
                             errorEmailField ? 'Email tidak boleh kosong' : null,
-                        prefixIcon: Icon(Icons.mail_outline_rounded),
+                        prefixIcon: Icon(Icons.account_circle_rounded),
                       ),
                     ),
                   ),

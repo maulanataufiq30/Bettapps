@@ -43,6 +43,7 @@ dependencies:
   progress_dialog:
   google_sign_in:
   provider:
+  easy_localization:
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +69,7 @@ flutter:
     - assets/dikirim.jpg
     - assets/etc/user.png
     - assets/etc/wa.png
+    - assets/add_pp.png
 
     - assets/corei7.png
     - assets/corei9.png

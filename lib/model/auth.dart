@@ -31,18 +31,18 @@ class Auth {
       User userDetail = userCredential.user;
 
       if (userCredential != null) {
-        // SharedPreferenceHelper().saveUserEmail(userDetail.email);
-        // SharedPreferenceHelper().saveUserId(userDetail.uid);
-        // SharedPreferenceHelper().saveUserName(name);
-        // SharedPreferenceHelper().saveOriginName(origin);
+
 
         Map<String, dynamic> userInfoMap = {
           "email": userDetail.email,
           "name": username,
           "logedIn": "false",
+          "imageUrl": "DEFAULT"
         };
 
-        DatabaseMethods().tambahAkun(userDetail.uid, userInfoMap).then((value) {
+        DatabaseMethods()
+            .tambahAkun(userCredential.user.uid, userInfoMap)
+            .then((value) {
           Navigator.pop(context);
         });
       }
@@ -92,28 +92,16 @@ class Auth {
           await DatabaseMethods().getUserInfo(userDetail.email);
 
       if (userCredential != null) {
-        CollectionReference _users = _firestore.collection('users');
-        String myBool = "LOGEDIN";
+
         SharedPreferenceHelper().saveUserEmail(userDetail.email);
         SharedPreferenceHelper().saveUserId(userDetail.uid);
         SharedPreferenceHelper().saveUserName(querySnapshot.docs[0]['name']);
         SharedPreferenceHelper().saveLogedIn(querySnapshot.docs[0]['logedIn']);
-
-        myBool = await SharedPreferenceHelper().getLogedIn();
-
-        print('XXXXXXXXXX disini');
-        print(myBool);
-        print('XXXXXXXXXX disini');
-
+        SharedPreferenceHelper()
+            .saveImageUrl(querySnapshot.docs[0]['imageUrl']);
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) => BottomNavigation()));
-        _users
-            .doc(userDetail.uid)
-            .update({
-              'logedIn': "true",
-            })
-            .then((value) => print("User Login"))
-            .catchError((error) => print("Gagal login"));
+
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -152,23 +140,10 @@ class Auth {
       }
     }
   }
-
-  Future toSignOut(BuildContext context) async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    auth.signOut();
-    preferences.clear();
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Sign Out'),
-      ),
-    );
-    Future.delayed(const Duration(milliseconds: 500), () {
-      RestartWidget.restartApp(context);
-    });
-    //return new LoginPage();
-  }
-
+  
   Future googlesignIn(BuildContext context) async {
+
+
     await Firebase.initializeApp();
 
     ScaffoldMessenger.of(context).showSnackBar(
@@ -189,27 +164,7 @@ class Auth {
     final User user = authResult.user;
 
     if (user != null) {
-      // Checking if email and name is null
-      assert(user.email != null);
-      assert(user.displayName != null);
-      assert(user.photoURL != null);
-
-      name = user.displayName;
-      email = user.email;
-      imageUrl = user.photoURL;
-
-      // Only taking the first part of the name, i.e., First Name
-      if (name.contains(" ")) {
-        name = name.substring(0, name.indexOf(" "));
-      }
-
-      assert(!user.isAnonymous);
-      assert(await user.getIdToken() != null);
-
-      final User currentUser = auth.currentUser;
-      assert(user.uid == currentUser.uid);
-
-      print('signInWithGoogle succeeded: $user');
+      
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => BottomNavigation()));
 
@@ -217,10 +172,15 @@ class Auth {
     }
   }
 
-  Future signoutGoogle(context) async {
-    await _googlSignIn.signOut();
-    auth.signOut();
-    print("User Signed Out");
+  Future toSignOut(context) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    await auth.signOut();
+    preferences.clear();
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Sign Out'),
+      ),
+    );
     Future.delayed(const Duration(milliseconds: 500), () {
       RestartWidget.restartApp(context);
     });
