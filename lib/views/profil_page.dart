@@ -5,16 +5,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:bettapps/helper/shared_preference_helper.dart';
 import 'package:bettapps/model/auth.dart';
-import 'package:bettapps/views/about_page.dart';
 import 'package:bettapps/views/add_item_page.dart';
 import 'package:bettapps/views/bayar_page.dart';
 import 'package:bettapps/views/dikirim_page.dart';
 import 'package:bettapps/views/diproses_page.dart';
 import 'package:bettapps/views/diterima_page.dart';
-import 'package:bettapps/views/toko_page.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:bettapps/model/database.dart';
-import 'package:bettapps/views/coming_soon_page.dart';
 
 import '../widgets/custom_button.dart';
 
@@ -39,7 +36,7 @@ class _ProfilPageState extends State<ProfilPage> {
     myUserName = await SharedPreferenceHelper().getUserName();
     myEmail = await SharedPreferenceHelper().getUserEmail();
     myCredentialId = await SharedPreferenceHelper().getUserCredentialId();
-    myPict = await SharedPreferenceHelper().getImageUrl();
+    myPict = await SharedPreferenceHelper().getUserImageUrl();
     setState(() {});
   }
 

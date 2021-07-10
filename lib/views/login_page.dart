@@ -166,42 +166,6 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 10.0),
-                  Container(
-                      margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: ElevatedButton(
-                          style: ButtonStyle(
-                            shape: MaterialStateProperty.all<
-                                    RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                    borderRadius:
-                                        new BorderRadius.circular(30.0))),
-                            backgroundColor:
-                                MaterialStateProperty.all(Color(0xffffffff)),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              Icon(
-                                FontAwesomeIcons.google,
-                                color: Color(0xffCE107C),
-                              ),
-                              SizedBox(width: 10.0),
-                              Text(
-                                'Sign in with Google',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 18.0),
-                              ),
-                            ],
-                          ),
-                          onPressed: () => Auth()
-                              .googlesignIn(context)
-                              .then((user) => print(user))
-                              .catchError((e) => print(e)),
-                        ),
-                      )),
                 ],
               ),
             )),

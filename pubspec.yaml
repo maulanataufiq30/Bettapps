@@ -62,7 +62,6 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
-    - assets/magnus.jpg
     - assets/belumdibayar.png
     - assets/diproses.png
     - assets/diterima.png
@@ -71,16 +70,6 @@ flutter:
     - assets/etc/wa.png
     - assets/add_pp.png
 
-    - assets/corei7.png
-    - assets/corei9.png
-    - assets/logo.png
-    - assets/nama.png
-    - assets/icon_processor.png
-    - assets/icon_vga.png
-    - assets/icon_case.png
-    - assets/icon_disk.png
-    - assets/icon_motherboard.png
-    - assets/icon_RAM.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

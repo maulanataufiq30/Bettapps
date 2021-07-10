@@ -7,7 +7,6 @@ import 'package:bettapps/helper/shared_preference_helper.dart';
 import 'package:bettapps/model/database.dart';
 import 'package:bettapps/views/bottom_navigation.dart';
 import 'package:get/get.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 String name;
@@ -17,7 +16,6 @@ String imageUrl;
 class Auth {
   FirebaseAuth auth = FirebaseAuth.instance;
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  GoogleSignIn _googlSignIn = new GoogleSignIn();
 
   getCurrentUser() async {
     return auth.currentUser;
@@ -37,11 +35,12 @@ class Auth {
           "email": userDetail.email,
           "name": username,
           "logedIn": "false",
-          "imageUrl": "DEFAULT"
+          "imageUrl": "DEFAULT",
+          "totalCheckout": 0
         };
 
         DatabaseMethods()
-            .tambahAkun(userCredential.user.uid, userInfoMap)
+            .tambahInfoAkun(userCredential.user.uid, userInfoMap)
             .then((value) {
           Navigator.pop(context);
         });
@@ -92,13 +91,15 @@ class Auth {
           await DatabaseMethods().getUserInfo(userDetail.email);
 
       if (userCredential != null) {
-
         SharedPreferenceHelper().saveUserEmail(userDetail.email);
         SharedPreferenceHelper().saveUserId(userDetail.uid);
+        SharedPreferenceHelper().saveUserCredentialId(userCredential.user.uid);
         SharedPreferenceHelper().saveUserName(querySnapshot.docs[0]['name']);
         SharedPreferenceHelper().saveLogedIn(querySnapshot.docs[0]['logedIn']);
         SharedPreferenceHelper()
             .saveImageUrl(querySnapshot.docs[0]['imageUrl']);
+        SharedPreferenceHelper()
+            .saveTotal(querySnapshot.docs[0]['totalCheckout']);
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) => BottomNavigation()));
 
@@ -141,40 +142,10 @@ class Auth {
     }
   }
   
-  Future googlesignIn(BuildContext context) async {
-
-
-    await Firebase.initializeApp();
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Sign in'),
-      ),
-    );
-    GoogleSignInAccount googleUser = await _googlSignIn.signIn();
-    GoogleSignInAuthentication googleAuth = await googleUser.authentication;
-
-    final AuthCredential credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
-
-    final UserCredential authResult =
-        await auth.signInWithCredential(credential);
-    final User user = authResult.user;
-
-    if (user != null) {
-      
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => BottomNavigation()));
-
-      return '$user';
-    }
-  }
-
   Future toSignOut(context) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    await auth.signOut();
+    
+    auth.signOut();
     preferences.clear();
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(

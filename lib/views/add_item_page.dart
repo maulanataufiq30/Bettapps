@@ -299,7 +299,8 @@ class _AddItemPageState extends State<AddItemPage> {
                                     "terjual": null
                                   };
 
-                                  DatabaseMethods().tambahBarang(infoBarang);
+                                  DatabaseMethods()
+                                      .tambahBarang(nama, infoBarang);
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(

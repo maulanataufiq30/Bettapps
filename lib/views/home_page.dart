@@ -2,8 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:bettapps/produk/item_card.dart';
 import 'package:bettapps/views/cart_page.dart';
-import 'package:bettapps/views/message_page.dart';
-import 'package:bettapps/views/wishlist_page.dart';
 import 'package:get/get.dart';
 
 import 'package:bettapps/helper/shared_preference_helper.dart';
@@ -18,8 +16,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String myUserName, myEmail, myId, myCredentialId = "DEFAULT";
+  String myUserName, myEmail, myId, myCredentialId = "DEFAULT", search;
+  TextEditingController searchController = TextEditingController(text: "");
 
+  
   getMyInfoFromSharedPreferences() async {
     myUserName = await SharedPreferenceHelper().getUserName();
     myEmail = await SharedPreferenceHelper().getUserEmail();
@@ -62,16 +62,16 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text('Halo', style: whiteFontBoldStyle2),
-                          Container(
-                            width: 200,
-                            child: Text(
-                              myUserName ?? 'User',
-                              maxLines: 1,
-                              style: blackFontBoldStyle1.copyWith(
-                                color: Colors.white,
-                              ),
+                        Container(
+                          width: 200,
+                          child: Text(
+                            myUserName ?? 'User',
+                            maxLines: 1,
+                            style: blackFontBoldStyle1.copyWith(
+                              color: Colors.white,
                             ),
                           ),
+                        ),
                         SizedBox(height: 30),
                         Text('"Selamat datang di Bettapps"',
                             style: greyFontStyleSmall.copyWith(
@@ -79,6 +79,35 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ],
+                ),
+              ),
+              SizedBox(height: 20),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+                child: TextFormField(
+                  controller: searchController,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.emailAddress,
+                  cursorColor: Colors.black,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 1.5,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.white,
+                        width: 3.0,
+                      ),
+                    ),
+                    hintText: 'Search',
+                    hintStyle: greyFontStyle,
+                    prefixIcon: Icon(Icons.search_rounded),
+                  ),
                 ),
               ),
               SizedBox(height: 20),
@@ -92,15 +121,6 @@ class _HomePageState extends State<HomePage> {
                             fontWeight: FontWeight.bold,
                             fontSize: 18,
                             color: Colors.blue)),
-                    InkWell(
-                      child:
-                          Text('Lainnya', style: TextStyle(color: Colors.blue)),
-                      onTap: () {
-                        // showDialog(
-                        //     context: context,
-                        //     builder: (context) => CommingSoonDialog());
-                      },
-                    )
                   ],
                 ),
               ),
@@ -143,48 +163,6 @@ class _HomePageState extends State<HomePage> {
                       }
                     }),
               ),
-              // SizedBox(height: 10),
-              // Container(
-              //   margin: EdgeInsets.symmetric(
-              //       horizontal: defaultMargin, vertical: 5),
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //     children: [
-              //       Text('Flash Sale',
-              //           style: TextStyle(
-              //               fontWeight: FontWeight.bold,
-              //               fontSize: 18,
-              //               color: Colors.blue)),
-              //       InkWell(
-              //           child: Text('Lainnya',
-              //               style: TextStyle(color: Colors.blue)),
-              //           onTap: () {})
-              //     ],
-              //   ),
-              // ),
-              // SizedBox(height: 10),
-              // Container(
-              //   margin: EdgeInsets.symmetric(
-              //       horizontal: defaultMargin, vertical: 5),
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //     children: [
-              //       Text('Disekitarmu',
-              //           style: TextStyle(
-              //               fontWeight: FontWeight.bold,
-              //               fontSize: 18,
-              //               color: Colors.blue)),
-              //       InkWell(
-              //         child:
-              //             Text('Lainnya', style: TextStyle(color: Colors.blue)),
-              //         onTap: () {
-              //           // Get.toNamed(AppRoutes.PANEN);
-              //         },
-              //       )
-              //     ],
-              //   ),
-              // ),
-              // SizedBox(height: 10),
             ],
           ),
         ),

@@ -1,10 +1,8 @@
-import 'package:bettapps/views/coming_soon_page.dart';
+
 import 'package:flutter/material.dart';
 import 'package:bettapps/views/cart_page.dart';
 import 'package:bettapps/views/home_page.dart';
-import 'package:bettapps/views/message_page.dart';
 import 'package:bettapps/views/profil_page.dart';
-import 'package:bettapps/views/wishlist_page.dart';
 
 class BottomNavigation extends StatefulWidget {
   @override
@@ -23,11 +21,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
   @override
   Widget build(BuildContext context) {
     final _listPage = [
-      // DashboardSamsat(),
       HomePage(),
-      ComingSoonPage(),
-      ComingSoonPage(),
-      ComingSoonPage(),
+      CartPage(),
       ProfilPage()
     ];
 
@@ -41,14 +36,6 @@ class _BottomNavigationState extends State<BottomNavigation> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: ('Home'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: ('Wish'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.message),
-            label: ('Message'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.card_travel),
