@@ -16,7 +16,7 @@ class _DiprosesPageState extends State<DiprosesPage> {
       appBar: AppBar(
         title: Text("Proses"),
         elevation: 0.0,
-       backgroundColor: Colors.lightBlue,
+       backgroundColor: Color(0xFF006FEE),
       ),
       extendBodyBehindAppBar: false,
       body: Stack(
@@ -52,12 +52,12 @@ class _DiprosesPageState extends State<DiprosesPage> {
               children: <Widget>[
                 Text(
                   "Ikan Cupang",
-                  style: TextStyle(color: Colors.blue, fontSize: 16),
+                  style: TextStyle(color: Color(0xFF006FEE), fontSize: 16),
                 ),
                 Text(
                   "Giant",
                   style: TextStyle(
-                      color: Colors.blue,
+                      color: Color(0xFF006FEE),
                       fontSize: 20,
                       fontWeight: FontWeight.bold),
                 ),
@@ -67,7 +67,7 @@ class _DiprosesPageState extends State<DiprosesPage> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
                         Image(
-                          image: AssetImage("assets/ikan_logo.jpeg"),
+                          image: AssetImage("assets/diproses.png"),
                           // height: MediaQuery.of(context).size.height * 0.4,
                           width: MediaQuery.of(context).size.width * 0.4,
                         )
@@ -108,7 +108,7 @@ class _DiprosesPageState extends State<DiprosesPage> {
                       margin: EdgeInsets.only(top: 60),
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Colors.blueAccent,
+                          color: Color(0xFF006FEE),
                           borderRadius: BorderRadius.circular(50),
                         ),
                         height: 33,

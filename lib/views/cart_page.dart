@@ -31,7 +31,7 @@ class _CartPageState extends State<CartPage> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xff2CCACA),
+        backgroundColor: Color(0xFF006FEE),
         title: Text(
           "Keranjang",
           style: TextStyle(fontWeight: FontWeight.bold),
@@ -93,7 +93,7 @@ class _CartPageState extends State<CartPage> {
                             width: MediaQuery.of(context).size.width * 0.4,
                             height: MediaQuery.of(context).size.height * 0.05,
                             decoration: BoxDecoration(
-                                color: Color(0xff2CCACA),
+                                color: Color(0xFF006FEE),
                                 borderRadius: BorderRadius.circular(15)),
                             child: Center(
                                 child: Text("PESAN",
@@ -109,7 +109,7 @@ class _CartPageState extends State<CartPage> {
                           width: MediaQuery.of(context).size.width * 0.4,
                           height: MediaQuery.of(context).size.height * 0.05,
                           decoration: BoxDecoration(
-                              color: Colors.red,
+                              color: Color(0xFF00BEEE),
                               borderRadius: BorderRadius.circular(15)),
                           child: Center(
                             child: StreamBuilder<DocumentSnapshot>(

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 
+import 'package:bettapps/views/diproses_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:bettapps/helper/shared_preference_helper.dart';
@@ -8,7 +9,6 @@ import 'package:bettapps/model/auth.dart';
 import 'package:bettapps/views/add_item_page.dart';
 import 'package:bettapps/views/bayar_page.dart';
 import 'package:bettapps/views/dikirim_page.dart';
-import 'package:bettapps/views/diproses_page.dart';
 import 'package:bettapps/views/diterima_page.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:bettapps/model/database.dart';
@@ -96,7 +96,9 @@ class _ProfilPageState extends State<ProfilPage> {
                                   decoration: BoxDecoration(
                                       image: DecorationImage(
                                           image: NetworkImage(myPict),
-                                          fit: BoxFit.cover)),
+                                          fit: BoxFit.cover,
+                                    ),
+                                  ),
                                 ),
                               )
                             : GestureDetector(
@@ -143,7 +145,7 @@ class _ProfilPageState extends State<ProfilPage> {
                       width: MediaQuery.of(context).size.width * 0.4,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(40),
-                        color: Color(0xFF2689FA),
+                        color: Color(0xFF006FEE),
                       ),
                       child: Center(
                         child: Text(
@@ -161,7 +163,7 @@ class _ProfilPageState extends State<ProfilPage> {
                       width: MediaQuery.of(context).size.width * 0.4,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          color: Color(0xffFF1192)),
+                          color: Color(0xFF00BEEE)),
                       child: Center(
                         child: Text(
                           "Bettapps",
@@ -181,7 +183,7 @@ class _ProfilPageState extends State<ProfilPage> {
               Card(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
-                    side: BorderSide(width: 3, color: Colors.blue)),
+                    side: BorderSide(width: 3, color: Color(0xFF006FEE))),
                 elevation: 7,
                 child: Container(
                   padding:
@@ -306,7 +308,7 @@ class _ProfilPageState extends State<ProfilPage> {
                   margin: EdgeInsets.only(bottom: 20),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(25),
-                      side: BorderSide(width: 3, color: Colors.blue)),
+                      side: BorderSide(width: 3, color: Color(0xFF006FEE))),
                   elevation: 7,
                   child: Container(
                     padding: EdgeInsets.only(
@@ -356,7 +358,7 @@ class _ProfilPageState extends State<ProfilPage> {
                     );
                   },
                   text: 'Keluar',
-                  color: Colors.blue)
+                  color: Color(0xFF006FEE))
             ],
           ),
         ),

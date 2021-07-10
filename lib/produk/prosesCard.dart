@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class KeranjangCard extends StatefulWidget {
+class ProsesCard extends StatefulWidget {
   final String nama;
   final String merek;
   final String tipe;
@@ -12,13 +12,13 @@ class KeranjangCard extends StatefulWidget {
   final Timestamp dibuat;
   final Timestamp terjual;
 
-  KeranjangCard(this.nama, this.merek, this.tipe, this.harga, this.jumlah,
+  ProsesCard(this.nama, this.merek, this.tipe, this.harga, this.jumlah,
       this.gambar, this.detail, this.dibuat, this.terjual);
   @override
-  _KeranjangCardState createState() => _KeranjangCardState();
+  _ProsesCardState createState() => _ProsesCardState();
 }
 
-class _KeranjangCardState extends State<KeranjangCard> {
+class _ProsesCardState extends State<ProsesCard> {
   @override
   Widget build(BuildContext context) {
     return Container(

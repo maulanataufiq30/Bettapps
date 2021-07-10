@@ -52,7 +52,7 @@ class _DetailPageState extends State<DetailPage> {
       appBar: AppBar(
         title: Text("Detail"),
         elevation: 0.0,
-        backgroundColor: Colors.blue,
+        backgroundColor: Color(0xFF006FEE),
       ),
       extendBodyBehindAppBar: false,
       body: Stack(
@@ -60,7 +60,13 @@ class _DetailPageState extends State<DetailPage> {
           Container(
             width: MediaQuery.of(context).size.width * 1,
             height: MediaQuery.of(context).size.height * 1,
-            decoration: BoxDecoration(color: Colors.blue),
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment
+                  .bottomCenter, // 10% of the width, so there are ten blinds.
+              colors: <Color>[Color(0xFF006FEE), Color(0xFF00BEEE)],
+            )),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -69,13 +75,14 @@ class _DetailPageState extends State<DetailPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(
-                    width: MediaQuery.of(context).size.width * 1,
+                    width: MediaQuery.of(context).size.width * 0.96,
                     height: MediaQuery.of(context).size.height * 0.5,
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(15),
-                            topRight: Radius.circular(15))),
+                            topRight: Radius.circular(15),
+                        )),
                   ),
                 ],
               ),
@@ -109,7 +116,7 @@ class _DetailPageState extends State<DetailPage> {
                             borderRadius: BorderRadius.circular(30.0),
                             child: Image.network(
                               widget.gambar,
-                              width: MediaQuery.of(context).size.width * 0.65,
+                              width: MediaQuery.of(context).size.width * 0.55,
                             ),
                           ),
                         ),

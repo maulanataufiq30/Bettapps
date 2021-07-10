@@ -11,7 +11,7 @@ class _BayarPageState extends State<BayarPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: Color(0xFF006FEE),
         title: Text(
           'Payment',
           style: TextStyle(fontWeight: FontWeight.bold),
@@ -30,7 +30,7 @@ class _BayarPageState extends State<BayarPage> {
                   decoration: TextDecoration.underline,
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
-                  color: Colors.lightBlue,
+                  color: Color(0xFF006FEE),
                 ),
               ),
             ),
@@ -42,7 +42,7 @@ class _BayarPageState extends State<BayarPage> {
                   decoration: TextDecoration.underline,
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
-                  color: Colors.lightBlue,
+                  color: Color(0xFF006FEE),
                 ),
               ),
             ),
@@ -56,7 +56,7 @@ class _BayarPageState extends State<BayarPage> {
                 style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
-                  color: Colors.lightBlue,
+                  color: Color(0xFF006FEE),
                 ),
               ),
             ),
@@ -72,9 +72,12 @@ class _BayarPageState extends State<BayarPage> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(50), topRight: Radius.circular(50)),
-              boxShadow: [
-                BoxShadow(color: Colors.lightBlue, spreadRadius: 3),
-              ],
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment(
+                    0.8, 0.0), // 10% of the width, so there are ten blinds.
+                colors: <Color>[Color(0xFF006FEE), Color(0xFF00BEEE)],
+              ),
             ),
             child: Column(
               children: [

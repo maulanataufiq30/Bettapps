@@ -19,7 +19,6 @@ class _HomePageState extends State<HomePage> {
   String myUserName, myEmail, myId, myCredentialId = "DEFAULT", search;
   TextEditingController searchController = TextEditingController(text: "");
 
-  
   getMyInfoFromSharedPreferences() async {
     myUserName = await SharedPreferenceHelper().getUserName();
     myEmail = await SharedPreferenceHelper().getUserEmail();
@@ -49,7 +48,12 @@ class _HomePageState extends State<HomePage> {
                   borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(30),
                       bottomRight: Radius.circular(30)),
-                  color: Colors.blue,
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment(
+                        0.8, 0.0), // 10% of the width, so there are ten blinds.
+                    colors: <Color>[Color(0xFF006FEE), Color(0xFF00BEEE)],
+                  ),
                 ),
                 child: Stack(
                   children: [
